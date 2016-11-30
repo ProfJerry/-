@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:uml="http://www.ws.zc/xml-namespace/informationModel/UMLModelGenericModel" targetNamespace="http://www.ws.zc/xml-namespace/informationModel/UMLModelGenericModel" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:simpleType name="DNType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:complexType name="DNSetType">
+		<xsd:sequence>
+			<xsd:element name="dn" type="uml:DNType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ManagedObject_T">
+		<xsd:sequence>
+			<xsd:element name="objectClass" type="xsd:string"/>
+			<xsd:element name="objectInstance" type="uml:DNType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--COMMON CONFIG-->
+	<xsd:complexType name="Router_T" abstract="true">
+		<xsd:complexContent>
+			<xsd:extension base="uml:ManagedObject_T">
+				<xsd:sequence>
+					<xsd:element name="IRPModule" type="uml:IRPModuleType"/>
+					<xsd:element name="assRouterList" type="uml:DNSetType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="accessIDPool_T" abstract="true">
+		<xsd:sequence>
+			<xsd:element name="accessID" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="routeIDPool_T" abstract="true">
+		<xsd:sequence>
+			<xsd:element name="routeID" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CRType_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:Router_T">
+				<xsd:sequence>
+					<xsd:element name="crID" type="xsd:string"/>
+					<xsd:element name="routeID" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ARType_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:Router_T">
+				<xsd:sequence>
+					<xsd:element name="arID" type="xsd:string"/>
+					<xsd:element name="accessID" type="xsd:string"/>
+					<xsd:element name="accessIDPool" type="uml:accessIDPool_T"/>
+					<xsd:element name="routeIDPool" type="uml:routeIDPool_T"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ASRType_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:Router_T">
+				<xsd:sequence>
+					<xsd:element name="asrID" type="xsd:string"/>
+					<xsd:element name="routeID" type="xsd:string"/>
+					<xsd:element name="accessID" type="xsd:string"/>
+					<!--<xsd:element name="memRelQueryInterval" type="xsd:integer"/>-->
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="InstanceOutputType">
+		<xsd:sequence>
+			<xsd:element ref="uml:CR_C" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="uml:ASR_C" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="outputInstanceList" type="uml:InstanceOutputType"/>
+	
+	<!--KEY ELEMENTS-->
+	<xsd:element name="CR_C" type="uml:CRType_T"/>
+	<!--<xsd:element name="AR_C" type="uml:ARType_T"/>-->
+	<xsd:element name="ASR_C" type="uml:ASRType_T"/>
+	
+	<!--IRP Related-->
+	<xsd:complexType name="IRPModuleType">
+		<xsd:sequence>
+			<xsd:element name="IRPModuleID" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>
