@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:outputInstanceList xmlns:uml="http://www.ws.zc/xml-namespace/informationModel/UMLModelGenericModel" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ws.zc/xml-namespace/informationModel/UMLModelGenericModel IRP-model-class1.xsd">
+<!--<uml:outputInstanceList>-->
+<uml:CR_C>
+	<uml:objectClass>CR_C</uml:objectClass>
+	<uml:objectInstance>crID=CR101</uml:objectInstance>
+	<uml:userLabel>CR-101</uml:userLabel>
+	<uml:interfaceNum>4</uml:interfaceNum>
+	<uml:actions>
+		<uml:notifyObjectionCreation>CREATED</uml:notifyObjectionCreation>
+	</uml:actions>
+	<uml:assRouterList>
+		<uml:dn>crID=CR102</uml:dn>
+		<uml:dn>crID=CR103</uml:dn>
+	</uml:assRouterList>
+	<uml:crID>CR101</uml:crID>
+	<uml:routeID>747B1B8C37568C69575B2307C05618A5</uml:routeID>
+</uml:CR_C>
+<uml:IRPModule_C>
+	<uml:objectClass>IRPModule_C</uml:objectClass>
+	<uml:objectInstance>crID=CR101,IRPModuleID=CR101IRP</uml:objectInstance>
+	<uml:IRPModuleID>CR101IRP</uml:IRPModuleID>
+	<uml:areaId>C8DF</uml:areaId>
+</uml:IRPModule_C>
+<uml:CR_C>
+	<uml:objectClass>CR_C</uml:objectClass>
+	<uml:objectInstance>crID=CR102</uml:objectInstance>
+	<uml:userLabel>CR-102</uml:userLabel>
+	<uml:interfaceNum>4</uml:interfaceNum>
+	<uml:assRouterList>
+		<uml:dn>crID=CR101</uml:dn>
+		<uml:dn>crID=CR104</uml:dn>
+		<uml:dn>asrID=ASR101</uml:dn>
+	</uml:assRouterList>
+	<uml:crID>CR102</uml:crID>
+	<uml:routeID>AD1B385B5C9CC6CBAC9A38D00AD0DE76</uml:routeID>
+</uml:CR_C>
+<uml:CR_C>
+	<uml:objectClass>CR_C</uml:objectClass>
+	<uml:objectInstance>crID=CR103</uml:objectInstance>
+	<uml:userLabel>CR-103</uml:userLabel>
+	<uml:interfaceNum>4</uml:interfaceNum>
+	<uml:assRouterList>
+		<uml:dn>crID=CR101</uml:dn>
+		<uml:dn>crID=CR104</uml:dn>
+	</uml:assRouterList>
+	<uml:crID>CR103</uml:crID>
+	<uml:routeID>C572949EC2AE9A0A7FECB3EB5F1E670D</uml:routeID>
+</uml:CR_C>
+<uml:CR_C>
+	<uml:objectClass>CR_C</uml:objectClass>
+	<uml:objectInstance>crID=CR104</uml:objectInstance>
+	<uml:userLabel>CR-104</uml:userLabel>
+	<uml:interfaceNum>4</uml:interfaceNum>
+	<uml:assRouterList>
+		<uml:dn>crID=CR102</uml:dn>
+		<uml:dn>crID=CR103</uml:dn>
+		<uml:dn>asrID=ASR102</uml:dn>
+	</uml:assRouterList>
+	<uml:crID>CR104</uml:crID>
+	<uml:routeID>C572949EC2AE9A0A2BB2BC82D272E253</uml:routeID>
+</uml:CR_C>
+
+<uml:ASR_C>
+	<uml:objectClass>ASR_C</uml:objectClass>
+	<uml:objectInstance>asrID=ASR101</uml:objectInstance>
+	<uml:userLabel>ASR-101</uml:userLabel>
+	<uml:interfaceNum>4</uml:interfaceNum>
+	<uml:assRouterList>
+		<uml:dn>CR102</uml:dn>
+	</uml:assRouterList>
+	<uml:asrID>ASR101</uml:asrID>
+	<uml:routeID>C20CD53FF1E5983DB4067B04CF1CA20C</uml:routeID>
+	<uml:accessID>91060367ACB9B41C</uml:accessID>
+	<uml:routeIDPool>
+		<uml:routeID>C20CD53FF1E5983DB4067B04CF1CA20C</uml:routeID>
+	</uml:routeIDPool>
+	<uml:accessIDPool>
+		<uml:accessID>91060367ACB9B41C</uml:accessID>
+	</uml:accessIDPool>
+</uml:ASR_C>
+
+<uml:ASR_C>
+	<uml:objectClass>ASR_C</uml:objectClass>
+	<uml:objectInstance>asrID=ASR102</uml:objectInstance>
+	<uml:userLabel>ASR-102</uml:userLabel>
+	<uml:interfaceNum>4</uml:interfaceNum>
+	<uml:assRouterList>
+		<uml:dn>CR104</uml:dn>
+	</uml:assRouterList>
+	<uml:asrID>ASR102</uml:asrID>
+	<uml:routeID>C20CD53FF1E5983DB4067B04CF1CA20C</uml:routeID>
+	<uml:accessID>91060367ACB9B41C</uml:accessID>
+	<uml:routeIDPool>
+		<uml:routeID>C20CD53FF1E5983DB4067B04CF1CA20C</uml:routeID>
+		<uml:routeID>C20CD53FF1E5983DB4067B04CF1CA20C</uml:routeID>
+	</uml:routeIDPool>
+	<uml:accessIDPool>
+		<uml:accessID>91060367ACB9B41C</uml:accessID>
+	</uml:accessIDPool>
+</uml:ASR_C>
+</uml:outputInstanceList>

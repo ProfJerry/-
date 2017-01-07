@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2013 sp1 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:uml="http://www.ws.zc/xml-namespace/informationModel/UMLModelGenericModel" targetNamespace="http://www.ws.zc/xml-namespace/informationModel/UMLModelGenericModel" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:simpleType name="DNType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:complexType name="DNSetType">
+		<xsd:sequence>
+			<xsd:element name="dn" type="uml:DNType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ManagedObject_T">
+		<xsd:sequence>
+			<xsd:element name="objectClass" type="xsd:string"/>
+			<xsd:element name="objectInstance" type="uml:DNType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--COMMON CONFIG-->
+	<xsd:complexType name="Router_T" abstract="true">
+		<xsd:complexContent>
+			<xsd:extension base="uml:ManagedObject_T">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element name="userLabel" type="uml:UserLabelType_T"/>
+					<xsd:element name="interfaceNum" type="xsd:integer"/>
+					<xsd:element name="actions" type="uml:ActionType"/>
+					<xsd:element name="assRouterList" type="uml:DNSetType"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CRType_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:Router_T">
+				<xsd:sequence>
+					<xsd:element name="crID" type="xsd:string"/>
+					<xsd:element name="routeID" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ARType_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:Router_T">
+				<xsd:sequence>
+					<xsd:element name="arID" type="xsd:string"/>
+					<xsd:element name="accessID" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ASRType_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:Router_T">
+				<xsd:sequence>
+					<xsd:element name="asrID" type="xsd:string"/>
+					<xsd:element name="routeID" type="xsd:string"/>
+					<xsd:element name="accessID" type="xsd:string"/>
+					<xsd:element name="routeIDPool" type="uml:routeIDPool_T"/>
+					<xsd:element name="accessIDPool" type="uml:accessIDPool_T"/>
+					<!--<xsd:element name="memRelQueryInterval" type="xsd:integer"/>-->
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="OutputInstanceType">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element ref="uml:CR_C" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="uml:ASR_C" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="uml:IRPModule_C" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:element name="outputInstanceList" type="uml:OutputInstanceType"/>
+	
+	<!--KEY ELEMENTS-->
+	<xsd:element name="CR_C" type="uml:CRType_T"/>
+	<!--<xsd:element name="AR_C" type="uml:ARType_T"/>-->
+	<xsd:element name="ASR_C" type="uml:ASRType_T"/>
+	<!--IRP Related-->
+	<xsd:complexType name="IRPModule_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:ManagedObject_T">
+				<xsd:sequence minOccurs="0">
+					<xsd:element name="IRPModuleID" type="xsd:string"/>
+					<xsd:element name="areaId" type="uml:AeraID_T"/>
+<!--					<xsd:element name="routerPriority" type="xsd:integer"/>
+					<xsd:element name="SecType" type="uml:SecType_T"/>
+					<xsd:element name="SecCode" type="uml:SecCode_T"/>-->
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="IRPModule_C" type="uml:IRPModule_T"/>
+	<!--	<xsd:complexType name="IRP_SecType_T">
+		<xsd:sequence>
+			<xsd:element name="secType" type="uml:secType_T"/>
+			-->
+	<!--<xsd:element name="secCode" type="uml:secCodeType_T"/>-->
+	<!--
+		</xsd:sequence>
+	</xsd:complexType>-->
+	<xsd:simpleType name="SecType_T">
+		<xsd:restriction base="xsd:unsignedInt">
+			<xsd:enumeration value="0"/>
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="3"/>
+			<xsd:enumeration value="4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SecCode_T">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="256"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--BASIC TYPES-->
+	<xsd:simpleType name="UserLabelType_T">
+		<xsd:annotation>
+			<xsd:documentation>User Identifiable Device Label or Name.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="256"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ActionType">
+		<xsd:choice>
+			<xsd:element name="notifyObjectionCreation" type="xsd:string" fixed="CREATED"/>
+			<xsd:element name="notifyObjectionDelection" type="xsd:string" fixed="DELETED"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="routeIDPool_T">
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:element name="routeID" type="uml:RID_T"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="accessIDPool_T">
+		<xsd:sequence>
+			<xsd:element name="accessID" type="uml:AID_T"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="RID_T">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="64"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AID_T">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="64"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AeraID_T">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="64"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2013 sp1 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:uml="http://www.ws.zc/xml-namespace/informationModel/UMLModelGenericModel" targetNamespace="http://www.ws.zc/xml-namespace/informationModel/UMLModelGenericModel" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:simpleType name="DNType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:complexType name="DNSetType">
+		<xsd:sequence>
+			<xsd:element name="dn" type="uml:DNType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ManagedObject_T">
+		<xsd:sequence>
+			<xsd:element name="objectClass" type="xsd:string"/>
+			<xsd:element name="objectInstance" type="uml:DNType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--COMMON CONFIG-->
+	<xsd:complexType name="Router_T" abstract="true">
+		<xsd:complexContent>
+			<xsd:extension base="uml:ManagedObject_T">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element name="userLabel" type="uml:UserLabelType_T"/>
+					<!--<xsd:element name="interfaceNum" type="xsd:integer"/>-->
+					<xsd:element name="actions" type="uml:ActionType"/>
+					<xsd:element name="assRouterList" type="uml:DNSetType"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CRType_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:Router_T">
+				<xsd:sequence>
+					<xsd:element name="crId" type="xsd:string"/>
+					<xsd:element name="routeId" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ARType_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:Router_T">
+				<xsd:sequence>
+					<xsd:element name="arId" type="xsd:string"/>
+					<xsd:element name="accessId" type="uml:AID_T"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ASRType_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:Router_T">
+				<xsd:sequence>
+					<xsd:element name="asrId" type="xsd:string"/>
+					<xsd:element name="routeId" type="xsd:string"/>
+					<xsd:element name="accessId" type="xsd:string"/>
+					<xsd:element name="routeIdPool" type="uml:routeIdPool_T"/>
+					<xsd:element name="accessIdPool" type="uml:accessIdPool_T"/>
+					<!--<xsd:element name="memRelQueryInterval" type="xsd:integer"/>-->
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!--OutputInstance-->
+	<xsd:complexType name="OutputInstanceType">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element ref="uml:AR_C" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="uml:CR_C" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="uml:ASR_C" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="uml:MICModule_C" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="uml:MMC_C" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="uml:MicGroupTable_C" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="uml:MicMemTable_C" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:element name="outputInstanceList" type="uml:OutputInstanceType"/>
+	<!--KEY ELEMENTS-->
+	<xsd:element name="CR_C" type="uml:CRType_T"/>
+	<xsd:element name="AR_C" type="uml:ARType_T"/>
+	<xsd:element name="ASR_C" type="uml:ASRType_T"/>
+	<xsd:element name="MMC_C" type="uml:MMC_T"/>
+	<xsd:element name="MICModule_C" type="uml:MICModule_T"/>
+	<xsd:element name="MicMemTable_C" type="uml:MicMemTable_T"/>
+	<xsd:element name="MicGroupTable_C" type="uml:MicGroupTable_T"/>
+	<!--MIC Related-->
+	<xsd:complexType name="MICModule_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:ManagedObject_T">
+				<xsd:sequence minOccurs="1">
+					<xsd:element name="MICModuleID" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="MMC_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:ManagedObject_T">
+				<xsd:sequence>
+					<xsd:element name="mmcId" type="xsd:string"/>
+					<xsd:element name="userLabel" type="xsd:string"/>
+					<xsd:element name="servAddr" type="uml:AID_T"/>
+					<xsd:element name="maxMemSourceCount" type="xsd:unsignedInt"/>
+					<xsd:element name="maxMemReceiverCount" type="xsd:unsignedInt"/>
+					<xsd:element name="msiBrodInterval" type="xsd:unsignedInt"/>
+					<xsd:element name="servExpiQueryWaitTime" type="xsd:unsignedInt"/>
+					<!--<xsd:element name="micGroupTable" type="MicGroupTableType"/>-->
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="MicMemTable_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:ManagedObject_T">
+				<xsd:sequence>
+					<xsd:element name="micMemTableId" type="xsd:string"/>
+					<xsd:sequence maxOccurs="unbounded">
+						<xsd:element name="micMemInfo" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="MicGroupTable_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:ManagedObject_T">
+				<xsd:sequence>
+					<xsd:element name="micGroupTableId" type="xsd:string"/>
+					<xsd:sequence maxOccurs="unbounded">
+						<xsd:element name="micGroupInfo" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<!--	<xsd:complexType name="IfTable_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:ManagedObject_T">
+				<xsd:sequence minOccurs="1">
+					<xsd:element name="ifTableId" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="IfTable_C" type="uml:IfTable_T"/>
+	<xsd:complexType name="If_T">
+		<xsd:complexContent>
+			<xsd:extension base="uml:ManagedObject_T">
+				<xsd:sequence>
+					<xsd:element name="ifId" type="xsd:string"/>
+					<xsd:element name="ifAddr" type="uml:RID_T"/>
+					<xsd:element name="areaId" type="uml:areaId_T"/>
+					<xsd:element name="ifType" type="uml:ifType_T"/>
+					<xsd:element name="nbrRid" type="uml:RID_T"/>
+					<xsd:element name="ifState" type="uml:ifState_T"/>
+					<xsd:element name="assIfList" type="uml:DNSetType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="ifType_T">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ifState_T">
+		<xsd:restriction base="xsd:integer">
+			<xsd:enumeration value="0"/>
+			<xsd:enumeration value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="If_C" type="uml:If_T"/>-->
+	<!--BASIC TYPES-->
+	<xsd:simpleType name="UserLabelType_T">
+		<xsd:annotation>
+			<xsd:documentation>User Identifiable Device Label or Name.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="256"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ActionType">
+		<xsd:choice>
+			<xsd:element name="notifyObjectionCreation" type="xsd:string" fixed="CREATED"/>
+			<xsd:element name="notifyObjectionDelection" type="xsd:string" fixed="DELETED"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="routeIdPool_T">
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:element name="routeId" type="uml:RID_T"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="accessIdPool_T">
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:element name="accessId" type="uml:AID_T"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="RID_T">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="64"/>
+			<xsd:pattern value="[0123456789ABCDEF]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AID_T">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="64"/>
+			<xsd:pattern value="[0123456789ABCDEF]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MSI_T">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="64"/>
+			<xsd:pattern value="[0123456789ABCDEF]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MRI_T">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="64"/>
+			<xsd:pattern value="[0123456789ABCDEF]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="areaId_T">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="64"/>
+			<xsd:pattern value="[0123456789ABCDEF]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

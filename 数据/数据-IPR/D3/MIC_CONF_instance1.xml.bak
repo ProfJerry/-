@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:outputInstanceList xmlns:uml="http://www.ws.zc/xml-namespace/informationModel/UMLModelGenericModel" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ws.zc/xml-namespace/informationModel/UMLModelGenericModel MIC-model-class1.xsd">
+<uml:AR_C>
+	<uml:objectClass>AR_C</uml:objectClass>
+	<uml:objectInstance>arId=AR101</uml:objectInstance>
+	<uml:userLabel>AR-101</uml:userLabel>
+	<uml:actions>
+		<uml:notifyObjectionCreation>CREATED</uml:notifyObjectionCreation>
+	</uml:actions>
+	<uml:assRouterList>
+		<uml:dn>asrId=ASR101</uml:dn>
+	</uml:assRouterList>
+	<uml:arId>AR101</uml:arId>
+	<uml:accessId>A144551DF49ADE37</uml:accessId>
+</uml:AR_C>
+
+<uml:AR_C>
+	<uml:objectClass>AR_C</uml:objectClass>
+	<uml:objectInstance>arId=AR102</uml:objectInstance>
+	<uml:userLabel>AR-102</uml:userLabel>
+	<uml:actions>
+		<uml:notifyObjectionCreation>CREATED</uml:notifyObjectionCreation>
+	</uml:actions>
+	<uml:assRouterList>
+		<uml:dn>asrId=ASR101</uml:dn>
+	</uml:assRouterList>
+	<uml:arId>AR102</uml:arId>
+	<uml:accessId>4DC0935835D11E58</uml:accessId>
+</uml:AR_C>
+
+<uml:ASR_C>
+	<uml:objectClass>ASR_C</uml:objectClass>
+	<uml:objectInstance>asrId=ASR101</uml:objectInstance>
+	<uml:userLabel>ASR-101</uml:userLabel>
+	<uml:actions>
+		<uml:notifyObjectionCreation>CREATED</uml:notifyObjectionCreation>
+	</uml:actions>
+	<uml:assRouterList>
+		<uml:dn>arId=101</uml:dn>
+		<uml:dn>arId=102</uml:dn>
+	</uml:assRouterList>
+	<uml:asrId>ASR-101</uml:asrId>
+	<uml:routeId>5DBA9B93C355A576600A3E1EDE5C396F</uml:routeId>
+	<uml:accessId>86172636B3F1AB91</uml:accessId>
+	<uml:routeIdPool>
+		<uml:routeId>97864A796B6F2E55CDA680285FE680E7</uml:routeId>
+		<uml:routeId>FE458CF6C49A4E25F8C80985FC5F23B5</uml:routeId>
+		<uml:routeId>94F7B931E1FA6604CB9AEA5C2DE4F7BA</uml:routeId>
+		<uml:routeId>962F329D772795332149386AE179AA26</uml:routeId>
+		<uml:routeId>68064A6DC2289B33B8DCCB1D9C45EFC1</uml:routeId>
+	</uml:routeIdPool>
+	<uml:accessIdPool>
+		<uml:accessId>F49042F2E8F5F21D</uml:accessId>
+		<uml:accessId>EBA6C156075BE33B</uml:accessId>
+		<uml:accessId>1B3CEEDA90CBDF65</uml:accessId>
+		<uml:accessId>E7EDA08BB1721E31</uml:accessId>
+		<uml:accessId>8AFA2F771DCE63D8</uml:accessId>
+		<uml:accessId>7A1774897558D887</uml:accessId>
+		<uml:accessId>D1967592FAE78104</uml:accessId>
+		<uml:accessId>35D368979BF2A590</uml:accessId>
+		<uml:accessId>451BE11315ACCB73</uml:accessId>
+		<uml:accessId>DEBF0193646502F3</uml:accessId>
+	</uml:accessIdPool>
+</uml:ASR_C>
+
+<uml:CR_C>
+	<uml:objectClass>CR_C</uml:objectClass>
+	<uml:objectInstance>crId=CR101</uml:objectInstance>
+	<uml:userLabel>CR-101</uml:userLabel>
+	<uml:actions>
+		<uml:notifyObjectionCreation>CREATED</uml:notifyObjectionCreation>
+	</uml:actions>
+	<uml:assRouterList>
+		<uml:dn>asrId=ASR101</uml:dn>
+	</uml:assRouterList>
+	<uml:crId>CR101</uml:crId>
+	<uml:routeId>2AF70D6BF067D37ED41DCCA704C38B4F</uml:routeId>
+</uml:CR_C>
+
+<uml:MMC_C>
+	<uml:objectClass>MMC_C</uml:objectClass>
+	<uml:objectInstance>mmcId=MMC101</uml:objectInstance>
+	<uml:mmcId>MMC101</uml:mmcId>
+	<uml:userLabel>MMC-101</uml:userLabel>
+	<uml:servAddr>32C40D35F2716092</uml:servAddr>
+	<uml:maxMemSourceCount>9999</uml:maxMemSourceCount>
+	<uml:maxMemReceiverCount>9999</uml:maxMemReceiverCount>
+	<uml:msiBrodInterval>20</uml:msiBrodInterval>
+	<uml:servExpiQueryWaitTime>20</uml:servExpiQueryWaitTime>
+</uml:MMC_C>
+<uml:MicGroupTable_C>
+	<uml:objectClass>MicGroupTable_C</uml:objectClass>
+	<uml:objectInstance>mmcId=MMC101,micGroupTableId=MMCGPTAB101</uml:objectInstance>
+	<uml:micGroupTableId>MMCGPTAB101</uml:micGroupTableId>
+	<uml:micGroupInfo>servMSI:44E71C3FA96B055D</uml:micGroupInfo>
+</uml:MicGroupTable_C>
+<uml:MicMemTable_C>
+	<uml:objectClass>MicMemTable_C</uml:objectClass>
+	<uml:objectInstance>mmcId=MMC101,micGroupTableId=MMCGPTAB101,micMemTableId=MICMEMTAB10001</uml:objectInstance>
+	<uml:micMemTableId>MICMEMTAB10001</uml:micMemTableId>
+	<uml:micMemInfo>memAid=C6CB13417DBB3155,memAsrAid=86172636B3F1AB91</uml:micMemInfo>
+	<uml:micMemInfo>memAid=C8DFAD1B385B5C9C,memAsrAid=86172636B3F1AB91</uml:micMemInfo>
+</uml:MicMemTable_C>
+
+</uml:outputInstanceList>
+
